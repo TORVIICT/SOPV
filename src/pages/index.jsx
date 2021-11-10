@@ -74,7 +74,7 @@ function Index(){
 
                 <div className="nav__dropdown-collapse">
                   <div className="nav__dropdown-content">
-                    <a href="#" className="nav__dropdown-item">Inventary</a>
+                    <a href="/productos" className="nav__dropdown-item">Inventary</a>
                     
                     <a href="/Ventas" className="nav__dropdown-item">Sales</a>
                     <a href="#" className="nav__dropdown-item">Reports</a>

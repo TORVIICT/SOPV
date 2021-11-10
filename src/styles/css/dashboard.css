@@ -137,6 +137,7 @@ img {
   box-shadow: 1px 0 0 rgba(22, 8, 43, 0.1);
   z-index: var(--z-fixed);
   transition: 0.4s;
+  ;
 }
 
 .nav__container {
@@ -335,35 +336,6 @@ img {
 /* PAGINA USUARIOS */
 
 
-.containeruser{
-  display: flex;
-
-  flex-direction: column;
-  height: 150vh;
-  top: 9vh;
-  right: -2%;
-  position: relative;
-  
-}
-
-
-
-.barra-de-arriba {
-  background: #e0d2a9;
-	width: 100%;
-  height: 8%;
-  top: 60%;
-	display: flex;
-  color: white;
-	font-size: 10px;
-	font-weight: bold;
-	font-family: cursive;
-  font-variant-position:var(--font-medium);
-  
-
-
-}
-
 .barra-busqueda{
 	position: absolute;
 	padding: 1px;
@@ -381,22 +353,11 @@ img {
 	font-size: 16px;
 }
 
-.diseño-tabla{
-  padding: 0;
-  display: absolute;
+/* tabla ventas */
 
+.table tr:hover{
+  background-color:powderblue ;
+  cursor: pointer;
 }
 
-h1{
-
-	color: rgb(252, 252, 252);
-  display: flex;
-  padding-top: 1.5%;
-  left: 10%;
-	font-size: 30px;
-	font-weight: bold;
-	font-family: cursive;
-	
-  
-}
 
