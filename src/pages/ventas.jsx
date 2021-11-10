@@ -5,8 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { nanoid } from 'nanoid';
 import axios from "axios";
-import { Dialog, Tooltip } from '@material-ui/core';
-
+import { Dialog, Tooltip } from '@mui/material';
 
 
 const Ventas = () => {
@@ -54,13 +53,13 @@ const Ventas = () => {
 
         )}
 
-        <ToastContainer position="bottom-center" autoClose={5000}/>
+        <ToastContainer position="bottom-center" autoClose={5000} />
             
     </div>
     );
 };
 
-const TablaVentas = ({listaVentas, setEjecutarConsulta}) => {
+const TablaVentas = ({listaVentas,setEjecutarConsulta}) => {
 
     const form = useRef(null);
 
@@ -84,7 +83,7 @@ const TablaVentas = ({listaVentas, setEjecutarConsulta}) => {
                 {listaVentas.map((venta)=>{
                     return ( <FilaVenta  key={nanoid()} venta={venta} setEjecutarConsulta={setEjecutarConsulta}/>
                     )
-                })};
+                })}
                
             </tbody>
             </table>
@@ -93,6 +92,7 @@ const TablaVentas = ({listaVentas, setEjecutarConsulta}) => {
 
 const FilaVenta = ({venta, setEjecutarConsulta}) =>{
     const [edit, setEdit] = useState(false);
+    const [openDialog, setOpenDialog] = useState(false);
     const [infoNuevaVenta, setInfoNuevaVenta] = useState({
         producto:venta.producto,
         cantidad:venta.cantidad,
@@ -130,7 +130,7 @@ const FilaVenta = ({venta, setEjecutarConsulta}) =>{
         console.error(error);
         toast.error("Error eliminando venta");
       });
-
+      setOpenDialog(false);
     };
     return(
         <tr>
@@ -161,38 +161,66 @@ const FilaVenta = ({venta, setEjecutarConsulta}) =>{
         <td>
             <div className="flex w-full justify-evenly">
                 {edit? (
+                  <div className="flex w-full justify-evenly">
 
-                    <>
-                    <Tooltip title='Confirmar Edición' arrow>
-                    <i onClick={()=> actualizarVenta()} class="fas fa-check-circle text-green-600 hover:text-green-900"/>
-                    </Tooltip>
+                <Tooltip title="CONFIRMAR">
+                <i 
+                onClick={()=> actualizarVenta()} 
+                className="fas fa-check-circle text-green-600 hover:text-green-900"
+                />
+                </Tooltip>
 
-                    <Tooltip title='Cancelar edición' arrow>
-                    <i onClick={() => setEdit(!edit)} className='fas fa-ban text-yellow-700 hover:text-yellow-500'/>
-                    </Tooltip>
-                    </>
-                
+                <Tooltip title='CANCELAR' arrow>
+                <i 
+                onClick={() => setEdit(!edit)} 
+                className='fas fa-ban text-yellow-700 hover:text-yellow-500'
+                />
+                </Tooltip>
+            
+                </div>
                 
                 ) : (
+                  
+              
+                <div className="flex w-full justify-evenly">
+                    <Tooltip title='Editar venta' arrow>
+                    <i 
+                    onClick={()=> setEdit(!edit)}
+                    className="fas fa-edit text-blue-500 hover:text-blue-800"></i>
+                    </Tooltip>
 
-                <>
-
-                <Tooltip title='Editar venta' arrow>
-                <i onClick={()=> setEdit(!edit)}class="fas fa-edit text-blue-500 hover:text-blue-800"></i>
+                    <Tooltip title='Eliminar Venta' arrow>
+                  <i
+                    onClick={() => setOpenDialog(true)}
+                    className='fas fa-trash text-red-700 hover:text-red-500'
+                  />
                 </Tooltip>
+              </div>
+            )}
+          </div>
 
-                <Tooltip title='Eliminar venta' arrow>
-                <i onClick={()=> eliminarVenta()} class="fas fa-trash text-red-500 hover:text-red-700"></i>
-                </Tooltip>
-
-                </>
-
-                )};
-
+          <Dialog open={openDialog}>
+            <div className='p-8 flex flex-col'>
+              <h1 className='text-gray-900 text-2xl font-bold'>
+                ¿Está seguro de querer eliminar la venta?
+              </h1>
+              <div className='flex w-full items-center justify-center my-4'>
+                <button
+                  onClick={() => eliminarVenta()}
+                  className='mx-2 px-4 py-2 bg-green-500 text-white hover:bg-green-700 rounded-md shadow-md'
+                >
+                  Sí
+                </button>
+                <button
+                  onClick={() => setOpenDialog(false)}
+                  className='mx-2 px-4 py-2 bg-red-500 text-white hover:bg-red-700 rounded-md shadow-md'
+                >
+                  No
+                </button>
+              </div>
             </div>
-
-            
-
+          </Dialog>
+          
         </td>
         </tr>
         
