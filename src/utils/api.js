@@ -7,10 +7,10 @@ const getToken = () => {
   return `Bearer ${localStorage.getItem('token')}`;
 };
 
-export const obtenerventas = async (successCallback, errorCallback) => {
+export const obtenerproductos = async (successCallback, errorCallback) => {
   const options = {
     method: 'GET',
-    url: `${baseURL}/ventas/`
+    url: `${baseURL}/productos/`
     // headers: {
     //   Authorization: getToken(),
     // },
@@ -18,30 +18,30 @@ export const obtenerventas = async (successCallback, errorCallback) => {
   await axios.request(options).then(successCallback).catch(errorCallback);
 };
 
-export const crearVenta = async (data, successCallback, errorCallback) => {
+export const crearProducto = async (data, successCallback, errorCallback) => {
   const options = {
     method: 'POST',
-    url: `${baseURL}/ventas/`,
+    url: `${baseURL}/productos/`,
     headers: { 'Content-Type': 'application/json', Authorization: getToken() },
     data,
   };
   await axios.request(options).then(successCallback).catch(errorCallback);
 };
 
-export const editarVenta = async (id, data, successCallback, errorCallback) => {
+export const editarProducto = async (id, data, successCallback, errorCallback) => {
   const options = {
     method: 'PATCH',
-    url: `${baseURL}/ventas/${id}/`,
+    url: `${baseURL}/productos/${id}/`,
     headers: { 'Content-Type': 'application/json', Authorization: getToken() },
     data,
   };
   await axios.request(options).then(successCallback).catch(errorCallback);
 };
 
- export const eliminarVenta = async (id, successCallback, errorCallback) => {
+ export const eliminarProducto = async (id, successCallback, errorCallback) => {
    const options = {
      method: 'DELETE',
-    url: `${baseURL}/ventas/${id}/`,
+    url: `${baseURL}/productos/${id}/`,
      headers: { 'Content-Type': 'application/json', Authorization: getToken() },
    };
    await axios.request(options).then(successCallback).catch(errorCallback);
