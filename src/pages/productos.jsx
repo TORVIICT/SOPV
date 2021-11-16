@@ -1,9 +1,9 @@
-
 import Layout from 'layouts/layout'
 import React, {useEffect, useState, useRef} from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { nanoid } from 'nanoid';
+import ReactLoading from 'react-loading';
 import { Dialog, Tooltip } from '@mui/material';
 import { obtenerproductos, crearProducto, editarProducto, eliminarProducto } from 'utils/api.js';
 
@@ -12,21 +12,29 @@ const Productos = () => {
     const [mostrarTabla, setMostrarTabla] = useState(true);
     const [productos, setProductos] = useState([]);
     const [ejecutarConsulta, setEjecutarConsulta] = useState(true);
+    const [loading, setLoading] = useState(false);
 
+    
     useEffect(() =>{
+      const fetchProductos = async () =>{
+        setLoading(true);
+        await obtenerproductos(
+
+          (response) => {
+            setProductos(response.data);
+            setEjecutarConsulta(false);
+            setLoading(false);
+          },
+
+          (error) => {
+            console.error(error);
+            setLoading(false);
+          }
+        );
+      }
+
     if (ejecutarConsulta){
-      obtenerproductos(
-
-            (response) => {
-              setProductos(response.data)
-            },
-
-            (error) => {
-              console.error(error);
-            }
-
-          );
-          setEjecutarConsulta(false);
+      fetchProductos();
         }
       },[ejecutarConsulta]);
 
@@ -39,6 +47,7 @@ const Productos = () => {
     }, [mostrarTabla]);
 
     return (
+    
     <div className="h-full ml-14">
         <Layout/>
         <div  className="bg-blue-400 flex  items-center pl-4 border-4 border-light-gray-500 border-opacity-50 h-20 " >
@@ -46,7 +55,7 @@ const Productos = () => {
         </div>
         <button onClick={()=> {setMostrarTabla(!mostrarTabla)}}  type="button" class="btn btn-success m-6 w-40 ">AGREGAR PRODUCTO</button>
         {mostrarTabla ? ( 
-        <TablaProductos listaProductos={productos} setEjecutarConsulta={setEjecutarConsulta} />
+        <TablaProductos loading={loading} listaProductos={productos} setEjecutarConsulta={setEjecutarConsulta} />
         ) : ( 
         <FormularioProductos setMostrarTabla={setMostrarTabla} listaProductos={productos} setProductos={setProductos} />
 
@@ -55,10 +64,12 @@ const Productos = () => {
         <ToastContainer position="bottom-center" autoClose={5000} />
             
     </div>
+    
     );
+    
 };
 
-const TablaProductos = ({listaProductos,setEjecutarConsulta}) => {
+const TablaProductos = ({loading,listaProductos,setEjecutarConsulta}) => {
     const [busqueda, setBusqueda] = useState("");
     const [productosFiltrados, setProductosFiltrados] = useState(listaProductos);
 
@@ -83,6 +94,9 @@ const TablaProductos = ({listaProductos,setEjecutarConsulta}) => {
         className=' border-2 border-gray-700 px-3 py-1 self-start rounded-md focus:outline-none focus:border-indigo-500'
       />
      </div> 
+     {loading ? (
+          <ReactLoading type='cylon' color='#abc123' height={667} width={375} />
+        ) : (
             <table class="table">
             <thead>
                 <tr>
@@ -100,10 +114,13 @@ const TablaProductos = ({listaProductos,setEjecutarConsulta}) => {
                 })}
             </tbody>
             </table>
-    </div>
-
+        )}
+        </div>
+              
     )
 };
+
+
 
 
 const FilaProducto = ({producto, setEjecutarConsulta}) =>{

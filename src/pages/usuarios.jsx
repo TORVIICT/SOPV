@@ -1,8 +1,9 @@
-import PrivateComponent from 'components/PrivateComponent';
+//import PrivateComponent from 'components/PrivateComponent';
 import { nanoid } from 'nanoid';
 import React, { useState, useEffect } from 'react';
 import { editarUsuario } from 'utils/api';
 import { obtenerUsuarios } from 'utils/api';
+import Layout from 'layouts/layout.jsx';
 
 const Usuarios = () => {
   const [usuarios, setUsuarios] = useState([]);
@@ -23,12 +24,16 @@ const Usuarios = () => {
   }, []);
 
   return (
+    
     <div>
-      <div>admin usuarios</div>
-      <PrivateComponent roleList={['admin']}>
+      <Layout/>
+      <div  className="bg-blue-400 flex  items-center pl-4 border-4 border-light-gray-500 border-opacity-50 h-20 " >
+             <h2 className="font-bold font-serif text-5xl text-white ">Admin Usuarios</h2>
+        </div>
+      {/* <PrivateComponent roleList={['admin']}> */}
         <button className='bg-red-400'>Hola RBAC</button>
-      </PrivateComponent>
-      <table className='tabla'>
+      {/* </PrivateComponent> */}
+      <table className='table'>
         <thead>
           <tr>
             <th>Nombre</th>

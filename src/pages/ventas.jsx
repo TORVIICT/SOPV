@@ -3,6 +3,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { crearVenta } from 'utils/api';
 import { obtenerproductos } from 'utils/api';
 import { obtenerUsuarios } from 'utils/api';
+import Layout from 'layouts/layout'
+
+
 const Ventas = () => {
     const form = useRef(null);
     const [vendedores, setVendedores] = useState([]);
@@ -73,7 +76,10 @@ const Ventas = () => {
     };
   
     return (
-      <div className='flex h-full w-full items-center justify-center'>
+       
+      <div class='flex h-full w-full items-center justify-center'>
+          <Layout/>
+        
         <form ref={form} onSubmit={submitForm} className='flex flex-col h-full'>
           <h1 className='text-3xl font-extrabold text-gray-900 my-3'>Crear una nueva venta</h1>
           <label className='flex flex-col' htmlFor='vendedor'>
@@ -110,7 +116,9 @@ const Ventas = () => {
             Crear Venta
           </button>
         </form>
+        
       </div>
+      
     );
   };
   
@@ -205,6 +213,7 @@ const Ventas = () => {
             })}
           </tbody>
         </table>
+        
       </div>
     );
   };

@@ -4,23 +4,16 @@
 /*===== VARIABLES CSS =====*/
 :root {
   /*===== Colores =====*/
-  --first-color: #006eff;
-  --first-color-dark: #0054c2;
-  --first-color-light: #9b989e;
-  --first-color-lighten: #f2f2f2;
+  --login-first-color: #006eff;
+  --login-first-color-dark: #0054c2;
+  --login-first-color-light: #9b989e;
+  --login-first-color-lighten: #f2f2f2;
 
   /*===== Font and typography =====*/
   --body-font: "Open Sans", sans-serif;
   --h1-font-size: 1.5rem;
   --normal-font-size: 0.938rem;
   --small-font-size: 0.813rem;
-}
-
-@media screen and (min-width: 768px) {
-  :root {
-    --normal-font-size: 1rem;
-    --small-font-size: 0.875rem;
-  }
 }
 
 /*===== BASE =====*/
@@ -30,12 +23,13 @@
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
+.login-body {
+
+  margin: null;
   padding: 0;
   font-family: var(--body-font);
   font-size: var(--normal-font-size);
-  color: var(--first-color-dark);
+  color: var(--login-first-color-dark);
 }
 
 h1 {
@@ -51,6 +45,8 @@ img {
   height: auto;
   display: block;
 }
+
+
 
 /*===== LOGIN =====*/
 .login {
@@ -84,7 +80,7 @@ img {
   position: absolute;
   bottom: 1rem;
   width: 100%;
-  background-color: var(--first-color-lighten);
+  background-color: var(--login-first-color-lighten);
   padding: 2rem 1rem;
   border-radius: 1rem;
   text-align: center;
@@ -122,7 +118,7 @@ img {
 
 .login__icon {
   font-size: 1.5rem;
-  color: var(--first-color);
+  color: var(--login-first-color);
 }
 
 .login__input {
@@ -130,13 +126,13 @@ img {
   outline: none;
   font-size: var(--normal-font-size);
   font-weight: 700;
-  color: var(--first-color-dark);
+  color: var(--login-first-color-dark);
 }
 
 .login__input::placeholder {
   font-size: var(--normal-font-size);
   font-family: var(--body-font);
-  color: var(--first-color-light);
+  color: var(--login-first-color-light);
 }
 
 .login__forgot {
@@ -146,14 +142,15 @@ img {
   margin-top: 0.5rem;
   font-size: var(--small-font-size);
   font-weight: 600;
-  color: var(--first-color-light);
+  color: var(--login-first-color-light);
 }
+
 
 .login__button {
   display: block;
   padding: 1rem;
   margin: 2rem 0;
-  background-color: var(--first-color);
+  background-color: var(--login-first-color);
   color: #fff;
   font-weight: 600;
   text-align: center;
@@ -162,7 +159,7 @@ img {
 }
 
 .login__button:hover {
-  background-color: var(--first-color-dark);
+  background-color: var(--login-first-color-dark);
 }
 
 .login__account,
@@ -173,12 +170,12 @@ img {
 }
 
 .login__account {
-  color: var(--first-color-light);
+  color: var(--login-first-color-light);
 }
 
 .login__signin,
 .login__signup {
-  color: var(--first-color);
+  color: var(--login-first-color);
   cursor: pointer;
 }
 
@@ -188,7 +185,7 @@ img {
 
 .login__social-icon {
   font-size: 1.5rem;
-  color: var(--first-color-dark);
+  color: var(--login-first-color-dark);
   margin: 0 1.5rem;
 }
 
@@ -227,7 +224,7 @@ img {
     display: flex;
     width: 600px;
     height: 588px;
-    background-color: var(--first-color-lighten);
+    background-color: var(--login-first-color-lighten);
     border-radius: 1rem;
     padding-left: 1rem;
   }
