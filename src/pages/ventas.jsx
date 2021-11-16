@@ -6,6 +6,7 @@ import { obtenerUsuarios } from 'utils/api';
 import Layout from 'layouts/layout'
 
 
+
 const Ventas = () => {
     const form = useRef(null);
     const [vendedores, setVendedores] = useState([]);
