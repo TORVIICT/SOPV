@@ -1,5 +1,5 @@
 
-import Index from './pages/index.jsx';
+
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './styles/css/dashboard.css';
 import Ventas from 'pages/ventas.jsx';
@@ -49,11 +49,10 @@ function App() {
                 </Route>
       
 
-              <Index>
               <Route path='/'>
                   <Inicio />
               </Route>
-              </Index>
+            
        
         </Switch>        
       </Router>  

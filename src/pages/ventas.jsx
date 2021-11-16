@@ -182,7 +182,7 @@ const Ventas = () => {
             onClick={() => agregarNuevoProducto()}
             className='col-span-2 bg-green-400 p-2 rounded-full shadow-md hover:bg-green-600 text-white'
           >
-            Agregar Vehículo
+            Agregar Venta
           </button>
         </div>
         <table class="table">
