@@ -4,18 +4,28 @@ import { useAuth0 } from '@auth0/auth0-react';
 import React, {useEffect} from 'react';
 
 const PrivateComponent = ({ children }) => {
-     const { isAuthenticated, isLoading, loginWithRedirect, getAccessTokenSilently } = useAuth0();
+     const { isAuthenticated, isLoading, loginWithRedirect , getAccessTokenSilently } = useAuth0();
 
 
 useEffect(( )=> {
-  getAccessTokenSilently();
+  const fetchAuth0Token = async () => {  
+    const accessToken = await getAccessTokenSilently({
+      audience= 'api-autenticacion-sovp',                                     
+    });
+    console.log(accessToken);
+  }
+  fetchAuth0Token();
 }, []);
+
+
 
 if (isLoading) return <div>Loading...</div>;
 
 if (!isAuthenticated) {
-  return <>{children }</>;
+  return loginWithRedirect()
 }
+
+return <>{children}</>;
 
 
 
